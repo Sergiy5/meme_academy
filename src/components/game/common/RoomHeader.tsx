@@ -1,0 +1,71 @@
+'use client';
+
+import { useGameStore, selectPlayers, selectMyPlayer } from '@/lib/game';
+
+interface RoomHeaderProps {
+  compact?: boolean;
+}
+
+export default function RoomHeader({ compact = false }: RoomHeaderProps) {
+  const { gameState, connectionStatus } = useGameStore();
+  const players = useGameStore(selectPlayers);
+  const myPlayer = useGameStore(selectMyPlayer);
+
+  if (!gameState) return null;
+
+  return (
+    <div className="screen-header flex items-center justify-between">
+      <div className="flex items-center gap-2 sm:gap-3">
+        {/* Connection Status */}
+        <span
+          className={`connection-dot ${
+            connectionStatus === 'connected'
+              ? 'connection-dot-connected'
+              : connectionStatus === 'connecting'
+              ? 'connection-dot-connecting'
+              : 'connection-dot-disconnected'
+          }`}
+        />
+
+        {/* Room Code */}
+        {!compact && (
+          <div>
+            <span className="text-game-text-dim text-xs">Room</span>
+            <p className="room-code text-base sm:text-lg">{gameState.roomCode}</p>
+          </div>
+        )}
+        {compact && (
+          <span className="room-code text-xs sm:text-sm">{gameState.roomCode}</span>
+        )}
+      </div>
+
+      {/* Current User Avatar + Player Count */}
+      <div className="flex items-center gap-2 sm:gap-3">
+        {/* Current user avatar */}
+        {myPlayer && (
+          <div className="flex items-center gap-2">
+            <div
+              className="player-avatar player-avatar-sm"
+              style={{ backgroundColor: myPlayer.avatarColor }}
+              title={myPlayer.nickname}
+            >
+              {myPlayer.nickname.charAt(0).toUpperCase()}
+            </div>
+            <span className="text-xs sm:text-sm font-medium hidden sm:inline">
+              {myPlayer.nickname}
+            </span>
+          </div>
+        )}
+
+        {/* Player count */}
+        <div className="text-right">
+          <span className="text-game-text-dim text-xs hidden sm:block">Players</span>
+          <p className="font-semibold text-xs sm:text-sm">
+            <span className="neon-text">{players.filter(p => p.isConnected).length}</span>
+            <span className="text-game-text-dim">/{players.length}</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}

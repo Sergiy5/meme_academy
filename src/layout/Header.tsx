@@ -1,6 +1,5 @@
 'use client';
 
-import { UserMenu } from '@/components/common';
 import { Logo, InputSearch } from '@/components/ui';
 
 export const Header: React.FC = () => {
@@ -18,10 +17,8 @@ export const Header: React.FC = () => {
           </div>
 
           {/* <!-- User Area --> */}
-          <UserMenu />
         </div>
         <div className="sm:hidden">
-          <InputSearch />
         </div>
       </div>
     </header>

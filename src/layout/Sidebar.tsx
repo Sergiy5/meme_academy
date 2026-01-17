@@ -1,5 +1,4 @@
 import { Logo } from '@/components/ui';
-import { Navigation } from '@/components/common';
 
 export const Sidebar: React.FC = () => {
   return (
@@ -7,7 +6,6 @@ export const Sidebar: React.FC = () => {
       <div className="hidden md:block">
         <Logo />
       </div>
-      <Navigation />
     </aside>
   );
 };

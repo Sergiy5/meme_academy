@@ -3,6 +3,7 @@
 @import './theme.css';
 @import './utilities.css';
 @import './components.css';
+@import './game.css';
 
 @layer base {
 

@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "server": "node ./node_modules/tsx/dist/cli.mjs src/server/index.ts"
   },
   "dependencies": {
     "@fullcalendar/core": "^6.1.19",
@@ -23,6 +24,7 @@
     "@tailwindcss/postcss": "^4.1.17",
     "autoprefixer": "^10.4.22",
     "clsx": "^2.1.1",
+    "express": "^4.21.2",
     "flatpickr": "^4.6.13",
     "next": "^16.0.8",
     "react": "^19.2.0",
@@ -31,7 +33,10 @@
     "react-dropzone": "^14.3.8",
     "recharts": "^3.5.0",
     "swiper": "^11.2.10",
-    "tailwind-merge": "^2.6.0"
+    "socket.io": "^4.8.1",
+    "socket.io-client": "^4.8.1",
+    "tailwind-merge": "^2.6.0",
+    "zustand": "^5.0.3"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
@@ -39,6 +44,7 @@
     "@types/node": "^20.19.25",
     "@types/react": "^19.2.4",
     "@types/react-dom": "^19.2.3",
+    "@types/express": "^5.0.1",
     "@types/react-transition-group": "^4.4.12",
     "@typescript-eslint/eslint-plugin": "^8.47.0",
     "@typescript-eslint/parser": "^8.47.0",
@@ -55,6 +61,8 @@
     "prettier-eslint": "^16.4.2",
     "prettier-plugin-tailwindcss": "^0.7.1",
     "tailwindcss": "^4.1.17",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.19.2",
     "typescript": "^5.9.3"
   },
   "overrides": {
