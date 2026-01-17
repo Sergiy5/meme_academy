@@ -1,4 +1,5 @@
 'use client';
+export const dynamic = 'force-dynamic';
 
 import { useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
@@ -42,9 +43,7 @@ export default function RoomPage() {
           <p className="text-game-text-dim mt-4">
             {connectionStatus === 'connecting' ? 'Connecting...' : 'Loading game...'}
           </p>
-          {error && (
-            <p className="text-game-error mt-2">{error}</p>
-          )}
+          {error && <p className="text-game-error mt-2">{error}</p>}
         </div>
       </div>
     );

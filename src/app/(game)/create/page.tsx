@@ -1,4 +1,5 @@
 'use client';
+export const dynamic = 'force-dynamic';
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
@@ -42,14 +43,14 @@ export default function CreateRoomPage() {
 
       {/* Content */}
       <div className="screen-content items-center justify-center gap-8 px-4">
-        <div className="text-center animate-fade-in">
-          <h1 className="text-3xl font-bold mb-2">Create Game</h1>
+        <div className="animate-fade-in text-center">
+          <h1 className="mb-2 text-3xl font-bold">Create Game</h1>
           <p className="text-game-text-dim">Enter your nickname to create a room</p>
         </div>
 
-        <form onSubmit={handleSubmit} className="w-full max-w-sm space-y-6 animate-slide-up">
+        <form onSubmit={handleSubmit} className="animate-slide-up w-full max-w-sm space-y-6">
           <div>
-            <label htmlFor="nickname" className="block text-sm font-medium mb-2">
+            <label htmlFor="nickname" className="mb-2 block text-sm font-medium">
               Your Nickname
             </label>
             <input
@@ -63,29 +64,19 @@ export default function CreateRoomPage() {
               autoFocus
               autoComplete="off"
             />
-            <p className="text-xs text-game-text-dim mt-2">
-              2-20 characters
-            </p>
+            <p className="text-game-text-dim mt-2 text-xs">2-20 characters</p>
           </div>
 
-          {error && (
-            <div className="text-game-error text-sm text-center">
-              {error}
-            </div>
-          )}
+          {error && <div className="text-game-error text-center text-sm">{error}</div>}
 
           {connectionStatus !== 'connected' && (
-            <div className="text-yellow-400 text-sm text-center flex items-center justify-center gap-2">
+            <div className="flex items-center justify-center gap-2 text-center text-sm text-yellow-400">
               <span className="connection-dot connection-dot-connecting" />
               Connecting to server...
             </div>
           )}
 
-          <button
-            type="submit"
-            disabled={!canSubmit}
-            className="game-btn game-btn-primary w-full"
-          >
+          <button type="submit" disabled={!canSubmit} className="game-btn game-btn-primary w-full">
             {isLoading ? (
               <span className="flex items-center gap-2">
                 <span className="spinner" style={{ width: '1.25rem', height: '1.25rem' }} />
