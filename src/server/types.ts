@@ -8,7 +8,8 @@ export interface ServerPlayer extends Player {
 export interface ServerRoundState {
   roundNumber: number;
   judgeId: PlayerId;
-  phrase: Phrase;
+  phraseOptions: Phrase[];
+  phrase: Phrase | null;
   submissions: Map<PlayerId, { memeId: string; meme: MemeCard }>;
   winnerId: PlayerId | null;
   winningMemeId: string | null;
@@ -33,7 +34,8 @@ export interface RoomPublicState {
   currentRound: {
     roundNumber: number;
     judgeId: PlayerId;
-    phrase: Phrase;
+    phraseOptions: Phrase[];
+    phrase: Phrase | null;
     submittedPlayerIds: PlayerId[];
     revealedSubmissions: Submission[];
     winnerId: PlayerId | null;
@@ -71,6 +73,7 @@ export function toPublicState(room: ServerRoom): RoomPublicState {
     currentRound = {
       roundNumber: room.currentRound.roundNumber,
       judgeId: room.currentRound.judgeId,
+      phraseOptions: room.currentRound.phraseOptions,
       phrase: room.currentRound.phrase,
       submittedPlayerIds,
       revealedSubmissions,

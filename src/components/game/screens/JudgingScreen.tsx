@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useGameSocket, useGameStore, selectIsJudge, selectJudge, selectCurrentRound } from '@/lib/game';
 import { RoomHeader, PlayerAvatar } from '../common';
 import { PhraseCard, MemeCard } from '../cards';
@@ -27,6 +27,7 @@ export default function JudgingScreen() {
   if (!round) return null;
 
   const submissions = round.revealedSubmissions;
+
 
   return (
     <div className="screen">

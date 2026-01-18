@@ -95,3 +95,12 @@ export const selectCanStartGame = (state: GameStore): boolean => {
     state.gameState.players.length >= 3
   );
 };
+
+export const selectPhraseOptions = (state: GameStore) => {
+  return state.gameState?.currentRound?.phraseOptions ?? [];
+};
+
+export const selectIsWinner = (state: GameStore): boolean => {
+  if (!state.playerId || !state.gameState?.currentRound) return false;
+  return state.gameState.currentRound.winnerId === state.playerId;
+};

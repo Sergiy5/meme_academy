@@ -128,6 +128,12 @@ export function getRandomPhrase(exclude: string[] = []): Phrase {
   return available[index];
 }
 
+export function getRandomPhrases(count: number, exclude: string[] = []): Phrase[] {
+  const available = PHRASE_POOL.filter(p => !exclude.includes(p.id));
+  const shuffled = [...available].sort(() => Math.random() - 0.5);
+  return shuffled.slice(0, count);
+}
+
 export function getPhraseById(id: string): Phrase | undefined {
   return PHRASE_POOL.find(p => p.id === id);
 }

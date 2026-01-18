@@ -22,8 +22,8 @@ export default function RoomHeader({ compact = false }: RoomHeaderProps) {
             connectionStatus === 'connected'
               ? 'connection-dot-connected'
               : connectionStatus === 'connecting'
-              ? 'connection-dot-connecting'
-              : 'connection-dot-disconnected'
+                ? 'connection-dot-connecting'
+                : 'connection-dot-disconnected'
           }`}
         />
 
@@ -34,9 +34,7 @@ export default function RoomHeader({ compact = false }: RoomHeaderProps) {
             <p className="room-code text-base sm:text-lg">{gameState.roomCode}</p>
           </div>
         )}
-        {compact && (
-          <span className="room-code text-xs sm:text-sm">{gameState.roomCode}</span>
-        )}
+        {compact && <span className="room-code text-xs sm:text-sm">{gameState.roomCode}</span>}
       </div>
 
       {/* Current User Avatar + Player Count */}
@@ -51,17 +49,18 @@ export default function RoomHeader({ compact = false }: RoomHeaderProps) {
             >
               {myPlayer.nickname.charAt(0).toUpperCase()}
             </div>
-            <span className="text-xs sm:text-sm font-medium hidden sm:inline">
+            <span className="hidden text-xs font-medium sm:inline sm:text-sm">
               {myPlayer.nickname}
             </span>
           </div>
         )}
 
+          {/* //text-right */}
         {/* Player count */}
-        <div className="text-right">
-          <span className="text-game-text-dim text-xs hidden sm:block">Players</span>
-          <p className="font-semibold text-xs sm:text-sm">
-            <span className="neon-text">{players.filter(p => p.isConnected).length}</span>
+        <div className="flex items-center justify-center gap-2">
+          <span className="text-game-text-dim hidden text-xs sm:block">Players</span>
+          <p className="text-xs font-semibold sm:text-sm">
+            <span className="neon-text">{players.filter((p) => p.isConnected).length}</span>
             <span className="text-game-text-dim">/{players.length}</span>
           </p>
         </div>

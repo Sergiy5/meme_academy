@@ -31,7 +31,26 @@
     --color-card-bg-dark: oklch(1 0 0 / 2%);
 
 /* ============ NEON GREEN GAME THEME ============ */
-    /* --game-text-dim: #9ca3af; */
+    /* Primary colors */
+    --color-game-neon: #39FF14;
+    --color-game-neon-dim: rgba(57, 255, 20, 0.5);
+
+    /* Backgrounds */
+    --color-game-bg: #0A0F1A;
+    --color-game-bg-secondary: #111827;
+    --color-game-card: #1a1f2e;
+    --color-game-card-hover: #252b3d;
+    --color-game-border: #2d3748;
+
+    /* Text */
+    --color-game-text: #ffffff;
+    --color-game-text-dim: #9ca3af;
+
+    /* Status */
+    --color-game-error: #ff4444;
+    --color-game-success: #39FF14;
+    --color-game-warning: #fbbf24;
+    --color-game-gold: #eab308;
 }
 
 

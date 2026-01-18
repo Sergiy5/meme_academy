@@ -15,7 +15,7 @@ export interface Player {
 
 // ============ GAME STATE TYPES ============
 
-export type GamePhase = 'lobby' | 'picking' | 'judging' | 'result';
+export type GamePhase = 'lobby' | 'phrase_selection' | 'picking' | 'judging' | 'result';
 
 export interface MemeCard {
   id: string;
@@ -36,7 +36,8 @@ export interface Submission {
 export interface RoundState {
   roundNumber: number;
   judgeId: PlayerId;
-  phrase: Phrase;
+  phraseOptions: Phrase[];
+  phrase: Phrase | null;
   submittedPlayerIds: PlayerId[];
   revealedSubmissions: Submission[];
   winnerId: PlayerId | null;
@@ -72,6 +73,7 @@ export type ClientMessage =
   | { type: 'create_room'; nickname: string }
   | { type: 'join_room'; roomCode: RoomCode; nickname: string }
   | { type: 'start_game' }
+  | { type: 'select_phrase'; phraseId: string }
   | { type: 'submit_meme'; memeId: string }
   | { type: 'select_winner'; oderId: string }
   | { type: 'next_round' }
@@ -86,6 +88,7 @@ export type ServerMessage =
   | { type: 'player_joined'; player: Player }
   | { type: 'player_left'; playerId: PlayerId }
   | { type: 'player_reconnected'; playerId: PlayerId }
+  | { type: 'phrase_selected'; phrase: Phrase }
   | { type: 'player_submitted'; playerId: PlayerId }
   | { type: 'all_submitted'; submissions: Submission[] }
   | { type: 'winner_selected'; winnerId: PlayerId; oderId: string }

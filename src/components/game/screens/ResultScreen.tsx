@@ -1,6 +1,6 @@
 'use client';
 
-import { useGameSocket, useGameStore, selectCurrentRound, selectPlayers, selectIsJudge } from '@/lib/game';
+import { useGameSocket, useGameStore, selectCurrentRound, selectPlayers, selectIsWinner } from '@/lib/game';
 import { RoomHeader, PlayerAvatar } from '../common';
 import { PhraseCard } from '../cards';
 
@@ -9,7 +9,7 @@ export default function ResultScreen() {
   const { playerId } = useGameStore();
   const round = useGameStore(selectCurrentRound);
   const players = useGameStore(selectPlayers);
-  const isJudge = useGameStore(selectIsJudge);
+  const isWinner = useGameStore(selectIsWinner);
 
   if (!round) return null;
 
@@ -20,8 +20,6 @@ export default function ResultScreen() {
 
   // Sort players by score for leaderboard
   const sortedPlayers = [...players].sort((a, b) => b.score - a.score);
-
-  const isWinner = playerId === round.winnerId;
 
   return (
     <div className="screen">
@@ -85,7 +83,7 @@ export default function ResultScreen() {
                 <div className="flex items-center gap-3">
                   <span
                     className={`w-6 h-6 flex items-center justify-center rounded-full text-sm font-bold ${
-                      index === 0 ? 'bg-yellow-500 text-black' : 'bg-game-border text-game-text-dim'
+                      index === 0 ? 'bg-game-gold text-game-bg' : 'bg-game-border text-game-text-dim'
                     }`}
                   >
                     {index + 1}
@@ -107,8 +105,8 @@ export default function ResultScreen() {
         </div>
       </div>
 
-      {/* Footer - Next Round Button (only for judge) */}
-      {isJudge && (
+      {/* Footer - Next Round Button (only for winner/next judge) */}
+      {isWinner && (
         <div className="screen-footer">
           <button
             onClick={nextRound}

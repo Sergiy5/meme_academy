@@ -65,6 +65,11 @@ export function useGameSocket() {
     s.emit('start_game');
   }, []);
 
+  const selectPhrase = useCallback((phraseId: string) => {
+    const s = getSocket();
+    s.emit('select_phrase', { phraseId });
+  }, []);
+
   const submitMeme = useCallback((memeId: string) => {
     const s = getSocket();
     s.emit('submit_meme', { memeId });
@@ -197,6 +202,7 @@ export function useGameSocket() {
     joinRoom,
     reconnectToRoom,
     startGame,
+    selectPhrase,
     submitMeme,
     selectWinner,
     nextRound,

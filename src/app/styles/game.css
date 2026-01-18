@@ -1,22 +1,25 @@
 /* ============ NEON GREEN GAME THEME ============ */
+/* Colors are defined in theme.css under @theme for Tailwind compatibility */
+/* These CSS variables reference the Tailwind theme variables */
 
 :root {
-  --game-neon: #39FF14;
-  --game-neon-dim: rgba(57, 255, 20, 0.5);
-  --game-neon-glow: 0 0 10px #39FF14, 0 0 20px #39FF14, 0 0 30px rgba(57, 255, 20, 0.5);
-  --game-neon-glow-sm: 0 0 5px #39FF14, 0 0 10px rgba(57, 255, 20, 0.5);
+  --game-neon: var(--color-game-neon);
+  --game-neon-dim: var(--color-game-neon-dim);
+  --game-neon-glow: 0 0 10px var(--color-game-neon), 0 0 20px var(--color-game-neon), 0 0 30px var(--color-game-neon-dim);
+  --game-neon-glow-sm: 0 0 5px var(--color-game-neon), 0 0 10px var(--color-game-neon-dim);
 
-  --game-bg: #0A0F1A;
-  --game-bg-secondary: #111827;
-  --game-card: #1a1f2e;
-  --game-card-hover: #252b3d;
-  --game-border: #2d3748;
+  --game-bg: var(--color-game-bg);
+  --game-bg-secondary: var(--color-game-bg-secondary);
+  --game-card: var(--color-game-card);
+  --game-card-hover: var(--color-game-card-hover);
+  --game-border: var(--color-game-border);
 
-  --game-text: #ffffff;
-  --game-text-dim: #9ca3af;
+  --game-text: var(--color-game-text);
+  --game-text-dim: var(--color-game-text-dim);
 
-  --game-error: #ff4444;
-  --game-success: #39FF14;
+  --game-error: var(--color-game-error);
+  --game-success: var(--color-game-success);
+  --game-warning: var(--color-game-warning);
 }
 
 /* ============ BASE STYLES ============ */
@@ -92,7 +95,7 @@
 }
 
 .game-btn-secondary:hover:not(:disabled) {
-  background: rgba(57, 255, 20, 0.1);
+  background: color-mix(in srgb, var(--game-neon) 10%, transparent);
   box-shadow: var(--game-neon-glow-sm);
 }
 
@@ -250,11 +253,11 @@
   justify-content: center;
   font-weight: 700;
   font-size: 1rem;
-  color: #000;
+  color: var(--game-bg);
   flex-shrink: 0;
   text-align: center;
   line-height: 1;
-  border: 2px solid rgba(255, 255, 255, 0.2);
+  border: 2px solid color-mix(in srgb, var(--game-text) 20%, transparent);
 }
 
 .player-avatar-sm {
@@ -301,18 +304,18 @@
 }
 
 .badge-host {
-  background: rgba(57, 255, 20, 0.2);
+  background: color-mix(in srgb, var(--game-neon) 20%, transparent);
   color: var(--game-neon);
   border: 1px solid var(--game-neon);
 }
 
 .badge-submitted {
-  background: rgba(57, 255, 20, 0.2);
+  background: color-mix(in srgb, var(--game-neon) 20%, transparent);
   color: var(--game-neon);
 }
 
 .badge-waiting {
-  background: rgba(156, 163, 175, 0.2);
+  background: color-mix(in srgb, var(--game-text-dim) 20%, transparent);
   color: var(--game-text-dim);
 }
 
@@ -335,7 +338,7 @@
 }
 
 .connection-dot-connecting {
-  background: #fbbf24;
+  background: var(--game-warning);
   animation: pulse 1.5s ease-in-out infinite;
 }
 

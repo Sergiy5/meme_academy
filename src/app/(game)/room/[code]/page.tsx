@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { useGameSocket, useGameStore, selectCurrentPhase } from '@/lib/game';
 import LobbyScreen from '@/components/game/screens/LobbyScreen';
+import PhraseSelectionScreen from '@/components/game/screens/PhraseSelectionScreen';
 import PickingScreen from '@/components/game/screens/PickingScreen';
 import JudgingScreen from '@/components/game/screens/JudgingScreen';
 import ResultScreen from '@/components/game/screens/ResultScreen';
@@ -53,6 +54,8 @@ export default function RoomPage() {
   switch (phase) {
     case 'lobby':
       return <LobbyScreen />;
+    case 'phrase_selection':
+      return <PhraseSelectionScreen />;
     case 'picking':
       return <PickingScreen />;
     case 'judging':

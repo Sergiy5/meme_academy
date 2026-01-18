@@ -49,6 +49,11 @@ io.on('connection', (socket) => {
     roomManager.startGame(socket);
   });
 
+  socket.on('select_phrase', ({ phraseId }: { phraseId: string }) => {
+    console.log('Selecting phrase:', phraseId);
+    roomManager.selectPhrase(socket, phraseId);
+  });
+
   socket.on('submit_meme', ({ memeId }: { memeId: string }) => {
     console.log('Submitting meme:', memeId);
     roomManager.submitMeme(socket, memeId);

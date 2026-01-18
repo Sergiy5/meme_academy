@@ -2,7 +2,7 @@ import { Server, Socket } from 'socket.io';
 import { ServerRoom, ServerPlayer, ServerRoundState, toPublicState } from './types';
 import { PlayerId, GAME_SETTINGS } from '../lib/game/types';
 import { getRandomMemes } from '../lib/game/content/memes';
-import { getRandomPhrase } from '../lib/game/content/phrases';
+import { getRandomPhrases, getPhraseById } from '../lib/game/content/phrases';
 import { generateRoomCode, generatePlayerId, getRandomAvatarColor, GAME_CONFIG } from '../lib/game/constants';
 
 export class GameRoomManager {
@@ -159,20 +159,50 @@ export class GameRoomManager {
     const playerIds = Array.from(room.players.keys());
     const judgeId = playerIds[Math.floor(Math.random() * playerIds.length)];
 
-    // Start first round
+    // Start first round - judge selects phrase first
     room.currentRound = this.createRound(room, judgeId);
-    room.phase = 'picking';
+    room.phase = 'phrase_selection';
 
     // Send state to all
     this.io.to(room.code).emit('room_state', { state: toPublicState(room) });
 
     // Send individual hands
-    for (const [pid, p] of room.players) {
+    for (const [, p] of room.players) {
       const playerSocket = this.io.sockets.sockets.get(p.socketId);
       if (playerSocket) {
         playerSocket.emit('hand_dealt', { hand: p.hand });
       }
     }
+  }
+
+  selectPhrase(socket: Socket, phraseId: string): void {
+    const info = this.socketToPlayer.get(socket.id);
+    if (!info) return;
+
+    const room = this.rooms.get(info.roomCode);
+    if (!room || room.phase !== 'phrase_selection' || !room.currentRound) return;
+
+    // Only judge can select phrase
+    if (info.playerId !== room.currentRound.judgeId) {
+      socket.emit('error', { message: 'Only the judge can select a phrase' });
+      return;
+    }
+
+    // Find the phrase in options
+    const selectedPhrase = room.currentRound.phraseOptions.find(p => p.id === phraseId);
+    if (!selectedPhrase) {
+      socket.emit('error', { message: 'Invalid phrase selection' });
+      return;
+    }
+
+    // Set the selected phrase and mark it as used
+    room.currentRound.phrase = selectedPhrase;
+    room.usedPhraseIds.push(selectedPhrase.id);
+    room.phase = 'picking';
+
+    // Notify all players
+    this.io.to(room.code).emit('phrase_selected', { phrase: selectedPhrase });
+    this.io.to(room.code).emit('room_state', { state: toPublicState(room) });
   }
 
   submitMeme(socket: Socket, memeId: string): void {
@@ -280,19 +310,25 @@ export class GameRoomManager {
     const winnerId = room.currentRound.winnerId;
     if (!winnerId) return;
 
+    // Only winner (next judge) can start next round
+    if (info.playerId !== winnerId) {
+      socket.emit('error', { message: 'Only the winner can start the next round' });
+      return;
+    }
+
     // Replenish hands (give each player who submitted a new card)
     this.replenishHands(room);
 
-    // Winner becomes next judge
+    // Winner becomes next judge - they select phrase first
     room.currentRound = this.createRound(room, winnerId);
-    room.phase = 'picking';
+    room.phase = 'phrase_selection';
 
     // Send updated state
     this.io.to(room.code).emit('room_state', { state: toPublicState(room) });
     this.io.to(room.code).emit('new_round', { round: toPublicState(room).currentRound });
 
     // Send individual hands
-    for (const [pid, p] of room.players) {
+    for (const [, p] of room.players) {
       const playerSocket = this.io.sockets.sockets.get(p.socketId);
       if (playerSocket) {
         playerSocket.emit('hand_dealt', { hand: p.hand });
@@ -371,13 +407,13 @@ export class GameRoomManager {
   }
 
   private createRound(room: ServerRoom, judgeId: PlayerId): ServerRoundState {
-    const phrase = getRandomPhrase(room.usedPhraseIds);
-    room.usedPhraseIds.push(phrase.id);
+    const phraseOptions = getRandomPhrases(3, room.usedPhraseIds);
 
     return {
       roundNumber: (room.currentRound?.roundNumber ?? 0) + 1,
       judgeId,
-      phrase,
+      phraseOptions,
+      phrase: null,
       submissions: new Map(),
       winnerId: null,
       winningMemeId: null,
