@@ -1,0 +1,112 @@
+{
+  "common": {
+    "back": "Wstecz",
+    "players": "Gracze",
+    "room": "Pokój",
+    "you": "Ty",
+    "host": "Host",
+    "connecting": "Łączenie z serwerem...",
+    "loading": "Ładowanie...",
+    "copied": "Skopiowano!",
+    "share": "Udostępnij",
+    "copyLink": "Kopiuj link"
+  },
+  "home": {
+    "title1": "MEM",
+    "title2": "PARTY",
+    "subtitle": "Najlepsza gra bitwy memów",
+    "createGame": "Stwórz grę",
+    "joinGame": "Dołącz do gry",
+    "howToPlay": "Jak grać",
+    "step1": "Stwórz pokój i udostępnij kod",
+    "step2": "Jeden gracz zostaje Sędzią w każdej rundzie",
+    "step3": "Sędzia pokazuje frazę, inni wybierają memy",
+    "step4": "Sędzia wybiera najśmieszniejszego mema - zwycięzca sędziuje następnie!",
+    "playersNeeded": "Wymagane 3+ graczy"
+  },
+  "create": {
+    "title": "Stwórz grę",
+    "subtitle": "Wpisz swój nick, aby stworzyć pokój",
+    "nicknameLabel": "Twój nick",
+    "nicknamePlaceholder": "Wpisz nick...",
+    "nicknameHint": "2-20 znaków",
+    "creating": "Tworzenie...",
+    "createRoom": "Stwórz pokój"
+  },
+  "join": {
+    "title": "Dołącz do gry",
+    "subtitle": "Wpisz kod pokoju, aby dołączyć",
+    "roomCodeLabel": "Kod pokoju",
+    "roomCodePlaceholder": "ABCD12",
+    "nicknameLabel": "Twój nick",
+    "nicknamePlaceholder": "Wpisz nick...",
+    "nicknameHint": "2-20 znaków",
+    "joining": "Dołączanie...",
+    "joinRoom": "Dołącz do pokoju"
+  },
+  "lobby": {
+    "shareCode": "Udostępnij ten kod znajomym",
+    "shareTitle": "Dołącz do Mem Party!",
+    "shareText": "Dołącz do mojej gry memowej! Kod: {roomCode}",
+    "playersCount": "Gracze ({count}/10)",
+    "needMorePlayers": "Potrzeba jeszcze {count} graczy do startu",
+    "waitingForPlayers": "Czekanie na graczy... ({count}/3)",
+    "startGame": "Rozpocznij grę",
+    "waitingForHost": "Czekanie, aż host rozpocznie grę..."
+  },
+  "phraseSelection": {
+    "round": "Runda {number}",
+    "choosePhrase": "Wybierz frazę na tę rundę!",
+    "judgeChoosing": "{nickname} wybiera frazę...",
+    "swipeHint": "Przesuń lub dotknij, aby przeglądać frazy",
+    "goToPhrase": "Przejdź do frazy {number}",
+    "waitingForPhrase": "Czekanie na frazę...",
+    "judgeChoosingPhrase": "{nickname} wybiera frazę na tę rundę",
+    "useThisPhrase": "Użyj tej frazy",
+    "selectPhrase": "Wybierz frazę"
+  },
+  "picking": {
+    "round": "Runda {number}",
+    "youAreJudge": "Jesteś Sędzią",
+    "judging": "{nickname} sędziuje",
+    "submitted": "{count}/{total} wysłano",
+    "waitingForPlayers": "Czekanie na graczy...",
+    "playersPickingMemes": "Gracze wybierają swoje memy",
+    "pickMemeHint": "Wybierz mema pasującego do frazy",
+    "memeSubmitted": "Mem wysłany!",
+    "waitingForOthers": "Czekanie na innych graczy...",
+    "submitMeme": "Wyślij mema",
+    "selectMeme": "Wybierz mema"
+  },
+  "judging": {
+    "round": "Runda {number}",
+    "pickWinningMeme": "Wybierz zwycięskiego mema!",
+    "judgePicking": "{nickname} wybiera...",
+    "tapToSelect": "Dotknij mema, który najlepiej pasuje do frazy",
+    "judgeDeciding": "Sędzia decyduje...",
+    "judgePickingWinner": "{nickname} wybiera zwycięzcę",
+    "submissions": "Odpowiedzi:",
+    "submittedMemeAlt": "Wysłany mem",
+    "pickThisWinner": "Wybierz tego zwycięzcę!",
+    "selectMeme": "Wybierz mema"
+  },
+  "result": {
+    "youWon": "Wygrałeś!",
+    "youWillBeJudge": "Będziesz Sędzią w następnej rundzie",
+    "playerWins": "{nickname} wygrywa!",
+    "theyWillBeJudge": "Oni będą Sędzią w następnej rundzie",
+    "winningMeme": "Zwycięski mem",
+    "winningMemeAlt": "Zwycięski mem",
+    "scoreboard": "Tabela wyników",
+    "nextRound": "Następna runda"
+  },
+  "memeCard": {
+    "imageUnavailable": "Obraz niedostępny",
+    "memeAlt": "Mem"
+  },
+  "notFound": {
+    "error": "BŁĄD",
+    "message": "Nie możemy znaleźć strony, której szukasz!",
+    "backToHome": "Powrót do strony głównej"
+  }
+}

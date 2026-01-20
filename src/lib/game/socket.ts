@@ -3,7 +3,7 @@
 import { useEffect, useRef, useCallback } from 'react';
 import { io, Socket } from 'socket.io-client';
 import { useGameStore } from './store';
-import { ServerMessage, GameState } from './types';
+import { GameState } from './types';
 
 const SOCKET_URL = process.env.NEXT_PUBLIC_SOCKET_URL || 'http://localhost:3001';
 
@@ -19,6 +19,17 @@ function getSocket(): Socket {
     });
   }
   return socket;
+}
+
+// Helper to get current locale from URL path
+function getCurrentLocale(): string {
+  if (typeof window === 'undefined') return 'en';
+  const pathSegments = window.location.pathname.split('/');
+  const locale = pathSegments[1];
+  if (['en', 'uk', 'pl'].includes(locale)) {
+    return locale;
+  }
+  return 'en';
 }
 
 export function useGameSocket() {
@@ -44,20 +55,23 @@ export function useGameSocket() {
 
   const createRoom = useCallback((nickname: string) => {
     const s = getSocket();
+    const locale = getCurrentLocale();
     store.setLoading(true);
-    s.emit('create_room', { nickname });
+    s.emit('create_room', { nickname, locale });
   }, [store]);
 
   const joinRoom = useCallback((roomCode: string, nickname: string) => {
     const s = getSocket();
+    const locale = getCurrentLocale();
     store.setLoading(true);
-    s.emit('join_room', { roomCode: roomCode.toUpperCase(), nickname });
+    s.emit('join_room', { roomCode: roomCode.toUpperCase(), nickname, locale });
   }, [store]);
 
   const reconnectToRoom = useCallback((playerId: string, roomCode: string) => {
     const s = getSocket();
+    const locale = getCurrentLocale();
     store.setLoading(true);
-    s.emit('reconnect_room', { playerId, roomCode });
+    s.emit('reconnect_room', { playerId, roomCode, locale });
   }, [store]);
 
   const startGame = useCallback(() => {
@@ -87,6 +101,11 @@ export function useGameSocket() {
     store.setSubmitted(false);
     store.selectMeme(null);
   }, [store]);
+
+  const changeLocale = useCallback((locale: string) => {
+    const s = getSocket();
+    s.emit('change_locale', { locale });
+  }, []);
 
   useEffect(() => {
     const s = getSocket();
@@ -175,6 +194,7 @@ export function useGameSocket() {
     s.on('player_reconnected', () => {}); // Handled by room_state
     s.on('winner_selected', () => {}); // Handled by room_state
     s.on('new_round', () => {}); // Handled by room_state
+    s.on('locale_changed', () => {}); // Acknowledged
     s.on('error', handleError);
 
     return () => {
@@ -191,6 +211,7 @@ export function useGameSocket() {
       s.off('player_reconnected');
       s.off('winner_selected');
       s.off('new_round');
+      s.off('locale_changed');
       s.off('error', handleError);
     };
   }, [store, reconnectToRoom]);
@@ -206,6 +227,7 @@ export function useGameSocket() {
     submitMeme,
     selectWinner,
     nextRound,
+    changeLocale,
     isConnected: store.connectionStatus === 'connected',
     connectionStatus: store.connectionStatus,
   };

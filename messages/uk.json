@@ -1,0 +1,112 @@
+{
+  "common": {
+    "back": "Назад",
+    "players": "Гравці",
+    "room": "Кімната",
+    "you": "Ви",
+    "host": "Хост",
+    "connecting": "Підключення до сервера...",
+    "loading": "Завантаження...",
+    "copied": "Скопійовано!",
+    "share": "Поділитися",
+    "copyLink": "Копіювати посилання"
+  },
+  "home": {
+    "title1": "МЕМ",
+    "title2": "ВЕЧІРКА",
+    "subtitle": "Найкраща гра для битви мемів",
+    "createGame": "Створити гру",
+    "joinGame": "Приєднатися",
+    "howToPlay": "Як грати",
+    "step1": "Створіть кімнату та поділіться кодом",
+    "step2": "Один гравець стає Суддею кожен раунд",
+    "step3": "Суддя показує фразу, інші обирають меми",
+    "step4": "Суддя обирає найсмішніший мем - переможець судить далі!",
+    "playersNeeded": "Потрібно 3+ гравці"
+  },
+  "create": {
+    "title": "Створити гру",
+    "subtitle": "Введіть свій нікнейм для створення кімнати",
+    "nicknameLabel": "Ваш нікнейм",
+    "nicknamePlaceholder": "Введіть нікнейм...",
+    "nicknameHint": "2-20 символів",
+    "creating": "Створюємо...",
+    "createRoom": "Створити кімнату"
+  },
+  "join": {
+    "title": "Приєднатися",
+    "subtitle": "Введіть код кімнати для приєднання",
+    "roomCodeLabel": "Код кімнати",
+    "roomCodePlaceholder": "ABCD12",
+    "nicknameLabel": "Ваш нікнейм",
+    "nicknamePlaceholder": "Введіть нікнейм...",
+    "nicknameHint": "2-20 символів",
+    "joining": "Приєднуємося...",
+    "joinRoom": "Приєднатися"
+  },
+  "lobby": {
+    "shareCode": "Поділіться цим кодом з друзями",
+    "shareTitle": "Приєднуйся до Мем Вечірки!",
+    "shareText": "Приєднуйся до моєї мем-гри! Код: {roomCode}",
+    "playersCount": "Гравці ({count}/10)",
+    "needMorePlayers": "Потрібно ще {count} гравець(ів) для старту",
+    "waitingForPlayers": "Чекаємо гравців... ({count}/3)",
+    "startGame": "Почати гру",
+    "waitingForHost": "Чекаємо, поки хост розпочне гру..."
+  },
+  "phraseSelection": {
+    "round": "Раунд {number}",
+    "choosePhrase": "Оберіть фразу для цього раунду!",
+    "judgeChoosing": "{nickname} обирає фразу...",
+    "swipeHint": "Свайпніть або натисніть для перегляду фраз",
+    "goToPhrase": "Перейти до фрази {number}",
+    "waitingForPhrase": "Чекаємо на фразу...",
+    "judgeChoosingPhrase": "{nickname} обирає фразу для цього раунду",
+    "useThisPhrase": "Обрати цю фразу",
+    "selectPhrase": "Оберіть фразу"
+  },
+  "picking": {
+    "round": "Раунд {number}",
+    "youAreJudge": "Ви - Суддя",
+    "judging": "{nickname} суддить",
+    "submitted": "{count}/{total} відправлено",
+    "waitingForPlayers": "Чекаємо на гравців...",
+    "playersPickingMemes": "Гравці обирають свої меми",
+    "pickMemeHint": "Оберіть мем, який підходить до фрази",
+    "memeSubmitted": "Мем відправлено!",
+    "waitingForOthers": "Чекаємо на інших гравців...",
+    "submitMeme": "Відправити мем",
+    "selectMeme": "Оберіть мем"
+  },
+  "judging": {
+    "round": "Раунд {number}",
+    "pickWinningMeme": "Оберіть переможний мем!",
+    "judgePicking": "{nickname} обирає...",
+    "tapToSelect": "Натисніть на мем, який найкраще підходить до фрази",
+    "judgeDeciding": "Суддя вирішує...",
+    "judgePickingWinner": "{nickname} обирає переможця",
+    "submissions": "Відповіді:",
+    "submittedMemeAlt": "Відправлений мем",
+    "pickThisWinner": "Обрати переможця!",
+    "selectMeme": "Оберіть мем"
+  },
+  "result": {
+    "youWon": "Ви перемогли!",
+    "youWillBeJudge": "Ви будете Суддею в наступному раунді",
+    "playerWins": "{nickname} переміг!",
+    "theyWillBeJudge": "Вони будуть Суддею в наступному раунді",
+    "winningMeme": "Переможний мем",
+    "winningMemeAlt": "Переможний мем",
+    "scoreboard": "Таблиця результатів",
+    "nextRound": "Наступний раунд"
+  },
+  "memeCard": {
+    "imageUnavailable": "Зображення недоступне",
+    "memeAlt": "Мем"
+  },
+  "notFound": {
+    "error": "ПОМИЛКА",
+    "message": "Ми не можемо знайти сторінку, яку ви шукаєте!",
+    "backToHome": "На головну"
+  }
+}

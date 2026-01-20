@@ -1,0 +1,112 @@
+{
+  "common": {
+    "back": "Back",
+    "players": "Players",
+    "room": "Room",
+    "you": "You",
+    "host": "Host",
+    "connecting": "Connecting to server...",
+    "loading": "Loading...",
+    "copied": "Copied!",
+    "share": "Share",
+    "copyLink": "Copy Link"
+  },
+  "home": {
+    "title1": "MEME",
+    "title2": "PARTY",
+    "subtitle": "The ultimate meme battle game",
+    "createGame": "Create Game",
+    "joinGame": "Join Game",
+    "howToPlay": "How to Play",
+    "step1": "Create a room and share the code",
+    "step2": "One player becomes the Judge each round",
+    "step3": "Judge shows a phrase, others pick memes",
+    "step4": "Judge picks the funniest meme - winner judges next!",
+    "playersNeeded": "3+ players needed"
+  },
+  "create": {
+    "title": "Create Game",
+    "subtitle": "Enter your nickname to create a room",
+    "nicknameLabel": "Your Nickname",
+    "nicknamePlaceholder": "Enter nickname...",
+    "nicknameHint": "2-20 characters",
+    "creating": "Creating...",
+    "createRoom": "Create Room"
+  },
+  "join": {
+    "title": "Join Game",
+    "subtitle": "Enter the room code to join",
+    "roomCodeLabel": "Room Code",
+    "roomCodePlaceholder": "ABCD12",
+    "nicknameLabel": "Your Nickname",
+    "nicknamePlaceholder": "Enter nickname...",
+    "nicknameHint": "2-20 characters",
+    "joining": "Joining...",
+    "joinRoom": "Join Room"
+  },
+  "lobby": {
+    "shareCode": "Share this code with friends",
+    "shareTitle": "Join Meme Party!",
+    "shareText": "Join my meme game! Code: {roomCode}",
+    "playersCount": "Players ({count}/10)",
+    "needMorePlayers": "Need {count} more player(s) to start",
+    "waitingForPlayers": "Waiting for players... ({count}/3)",
+    "startGame": "Start Game",
+    "waitingForHost": "Waiting for host to start the game..."
+  },
+  "phraseSelection": {
+    "round": "Round {number}",
+    "choosePhrase": "Choose a phrase for this round!",
+    "judgeChoosing": "{nickname} is choosing a phrase...",
+    "swipeHint": "Swipe or tap to browse phrases",
+    "goToPhrase": "Go to phrase {number}",
+    "waitingForPhrase": "Waiting for phrase...",
+    "judgeChoosingPhrase": "{nickname} is choosing a phrase for this round",
+    "useThisPhrase": "Use This Phrase",
+    "selectPhrase": "Select a phrase"
+  },
+  "picking": {
+    "round": "Round {number}",
+    "youAreJudge": "You are the Judge",
+    "judging": "{nickname} is judging",
+    "submitted": "{count}/{total} submitted",
+    "waitingForPlayers": "Waiting for players...",
+    "playersPickingMemes": "Players are picking their memes",
+    "pickMemeHint": "Pick a meme that matches the phrase",
+    "memeSubmitted": "Meme Submitted!",
+    "waitingForOthers": "Waiting for other players...",
+    "submitMeme": "Submit Meme",
+    "selectMeme": "Select a meme"
+  },
+  "judging": {
+    "round": "Round {number}",
+    "pickWinningMeme": "Pick the winning meme!",
+    "judgePicking": "{nickname} is picking...",
+    "tapToSelect": "Tap on the meme that best matches the phrase",
+    "judgeDeciding": "Judge is deciding...",
+    "judgePickingWinner": "{nickname} is picking the winner",
+    "submissions": "Submissions:",
+    "submittedMemeAlt": "Submitted meme",
+    "pickThisWinner": "Pick This Winner!",
+    "selectMeme": "Select a meme"
+  },
+  "result": {
+    "youWon": "You Won!",
+    "youWillBeJudge": "You'll be the Judge next round",
+    "playerWins": "{nickname} wins!",
+    "theyWillBeJudge": "They'll be the Judge next round",
+    "winningMeme": "Winning Meme",
+    "winningMemeAlt": "Winning meme",
+    "scoreboard": "Scoreboard",
+    "nextRound": "Next Round"
+  },
+  "memeCard": {
+    "imageUnavailable": "Image unavailable",
+    "memeAlt": "Meme"
+  },
+  "notFound": {
+    "error": "ERROR",
+    "message": "We can't seem to find the page you are looking for!",
+    "backToHome": "Back to Home Page"
+  }
+}

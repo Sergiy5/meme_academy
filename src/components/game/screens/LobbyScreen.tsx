@@ -3,8 +3,11 @@
 import { useState } from 'react';
 import { useGameSocket, useGameStore, selectIsHost, selectPlayers, selectCanStartGame } from '@/lib/game';
 import { RoomHeader, PlayerAvatar } from '../common';
+import { useTranslations } from 'next-intl';
 
 export default function LobbyScreen() {
+  const t = useTranslations('lobby');
+  const tCommon = useTranslations('common');
   const { startGame } = useGameSocket();
   const { gameState, playerId, error } = useGameStore();
   const isHost = useGameStore(selectIsHost);
@@ -38,8 +41,8 @@ export default function LobbyScreen() {
     if (navigator.share) {
       try {
         await navigator.share({
-          title: 'Join Meme Party!',
-          text: `Join my meme game! Code: ${gameState.roomCode}`,
+          title: t('shareTitle'),
+          text: t('shareText', { roomCode: gameState.roomCode }),
           url,
         });
       } catch {
@@ -63,15 +66,15 @@ export default function LobbyScreen() {
       <div className="screen-content gap-6 px-4">
         {/* Room Code Section */}
         <div className="game-card p-6 text-center animate-fade-in">
-          <p className="text-sm text-game-text-dim mb-2">Share this code with friends</p>
+          <p className="text-sm text-game-text-dim mb-2">{t('shareCode')}</p>
           <p className="room-code text-3xl mb-4">{gameState.roomCode}</p>
           <div className="flex gap-3 justify-center">
             <button onClick={handleCopyLink} className="game-btn game-btn-secondary text-sm py-2 px-4">
-              {copied ? 'Copied!' : 'Copy Link'}
+              {copied ? tCommon('copied') : tCommon('copyLink')}
             </button>
             {'share' in navigator && (
               <button onClick={handleShare} className="game-btn game-btn-primary text-sm py-2 px-4">
-                Share
+                {tCommon('share')}
               </button>
             )}
           </div>
@@ -80,7 +83,7 @@ export default function LobbyScreen() {
         {/* Players List */}
         <div className="game-card p-4 animate-slide-up">
           <h2 className="text-sm font-semibold text-game-text-dim mb-4">
-            Players ({players.length}/10)
+            {t('playersCount', { count: players.length })}
           </h2>
           <div className="space-y-3">
             {players.map((player) => (
@@ -92,9 +95,9 @@ export default function LobbyScreen() {
               >
                 <PlayerAvatar player={player} showName />
                 <div className="flex items-center gap-2">
-                  {player.isHost && <span className="badge badge-host">Host</span>}
+                  {player.isHost && <span className="badge badge-host">{tCommon('host')}</span>}
                   {player.id === playerId && (
-                    <span className="text-xs text-game-text-dim">(You)</span>
+                    <span className="text-xs text-game-text-dim">({tCommon('you')})</span>
                   )}
                 </div>
               </div>
@@ -103,7 +106,7 @@ export default function LobbyScreen() {
 
           {players.length < 3 && (
             <p className="text-center text-game-text-dim text-sm mt-4">
-              Need {3 - players.length} more player{3 - players.length !== 1 ? 's' : ''} to start
+              {t('needMorePlayers', { count: 3 - players.length })}
             </p>
           )}
         </div>
@@ -124,11 +127,11 @@ export default function LobbyScreen() {
             disabled={!canStart}
             className="game-btn game-btn-primary w-full"
           >
-            {players.length < 3 ? `Waiting for players... (${players.length}/3)` : 'Start Game'}
+            {players.length < 3 ? t('waitingForPlayers', { count: players.length }) : t('startGame')}
           </button>
         ) : (
           <div className="text-center">
-            <p className="text-game-text-dim">Waiting for host to start the game...</p>
+            <p className="text-game-text-dim">{t('waitingForHost')}</p>
           </div>
         )}
       </div>

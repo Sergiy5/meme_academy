@@ -1,11 +1,14 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
-import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
+import { Link, useRouter } from '@/i18n/navigation';
 import { useGameSocket, useGameStore } from '@/lib/game';
+import { useTranslations } from 'next-intl';
 
 export const JoinRoom = () => {
+  const t = useTranslations('join');
+  const tCommon = useTranslations('common');
   const searchParams = useSearchParams();
   const initialCode = searchParams.get('code') || '';
 
@@ -49,28 +52,28 @@ export const JoinRoom = () => {
       {/* Header */}
       <div className="screen-header">
         <Link href="/" className="text-game-text-dim hover:text-game-neon transition-colors">
-          &larr; Back
+          &larr; {tCommon('back')}
         </Link>
       </div>
 
       {/* Content */}
       <div className="screen-content items-center justify-center gap-8 px-4">
         <div className="animate-fade-in text-center">
-          <h1 className="mb-2 text-3xl font-bold">Join Game</h1>
-          <p className="text-game-text-dim">Enter the room code to join</p>
+          <h1 className="mb-2 text-3xl font-bold">{t('title')}</h1>
+          <p className="text-game-text-dim">{t('subtitle')}</p>
         </div>
 
         <form onSubmit={handleSubmit} className="animate-slide-up w-full max-w-sm space-y-6">
           <div>
             <label htmlFor="roomCode" className="mb-2 block text-sm font-medium">
-              Room Code
+              {t('roomCodeLabel')}
             </label>
             <input
               id="roomCode"
               type="text"
               value={roomCode}
               onChange={handleCodeChange}
-              placeholder="ABCD12"
+              placeholder={t('roomCodePlaceholder')}
               className="game-input game-input-code"
               maxLength={6}
               autoFocus
@@ -80,19 +83,19 @@ export const JoinRoom = () => {
 
           <div>
             <label htmlFor="nickname" className="mb-2 block text-sm font-medium">
-              Your Nickname
+              {t('nicknameLabel')}
             </label>
             <input
               id="nickname"
               type="text"
               value={nickname}
               onChange={(e) => setNickname(e.target.value)}
-              placeholder="Enter nickname..."
+              placeholder={t('nicknamePlaceholder')}
               className="game-input"
               maxLength={20}
               autoComplete="off"
             />
-            <p className="text-game-text-dim mt-2 text-xs">2-20 characters</p>
+            <p className="text-game-text-dim mt-2 text-xs">{t('nicknameHint')}</p>
           </div>
 
           {error && <div className="text-game-error text-center text-sm">{error}</div>}
@@ -100,7 +103,7 @@ export const JoinRoom = () => {
           {connectionStatus !== 'connected' && (
             <div className="flex items-center justify-center gap-2 text-center text-sm text-yellow-400">
               <span className="connection-dot connection-dot-connecting" />
-              Connecting to server...
+              {tCommon('connecting')}
             </div>
           )}
 
@@ -108,10 +111,10 @@ export const JoinRoom = () => {
             {isLoading ? (
               <span className="flex items-center gap-2">
                 <span className="spinner" style={{ width: '1.25rem', height: '1.25rem' }} />
-                Joining...
+                {t('joining')}
               </span>
             ) : (
-              'Join Room'
+              t('joinRoom')
             )}
           </button>
         </form>
