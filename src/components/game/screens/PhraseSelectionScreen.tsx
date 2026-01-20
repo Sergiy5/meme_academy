@@ -146,7 +146,7 @@ export default function PhraseSelectionScreen() {
               <div className="spinner mx-auto mb-4" />
               <h2 className="mb-2 text-xl font-semibold">{t('waitingForPhrase')}</h2>
               <p className="text-game-text-dim">
-                {t('judgeChoosingPhrase', { nickname: judge?.nickname })}
+                {t('judgeChoosingPhrase', { nickname: judge?.nickname ?? "" })}
               </p>
             </div>
           </div>

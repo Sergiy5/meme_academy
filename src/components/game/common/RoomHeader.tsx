@@ -62,7 +62,7 @@ export default function RoomHeader({ compact = false }: RoomHeaderProps) {
           <span className="text-game-text-dim hidden text-xs sm:block">{t('players')}</span>
           <p className="text-xs font-semibold sm:text-sm">
             <span className="neon-text">{players.filter((p) => p.isConnected).length}</span>
-            {/* <span className="text-game-text-dim">/{players.length}</span> */}
+            <span className="text-game-text-dim">/{players.length}</span>
           </p>
         </div>
       </div>
