@@ -79,7 +79,7 @@ export default function JudgingScreen() {
                 <div className="spinner mx-auto mb-4" />
                 <h2 className="text-xl font-semibold mb-2">{t('judgeDeciding')}</h2>
                 <p className="text-game-text-dim mb-4">
-                  {t('judgePickingWinner', { nickname: judge?.nickname })}
+                  {t('judgePickingWinner', { nickname: judge?.nickname ?? '' })}
                 </p>
 
                 <p className="text-xs text-game-text-dim mb-4">{t('submissions')}</p>
