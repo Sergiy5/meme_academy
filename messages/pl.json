@@ -60,6 +60,8 @@
     "judgeChoosing": "{nickname} wybiera frazę...",
     "swipeHint": "Przesuń lub dotknij, aby przeglądać frazy",
     "goToPhrase": "Przejdź do frazy {number}",
+    "previousPhrase": "Poprzednia fraza",
+    "nextPhrase": "Następna fraza",
     "waitingForPhrase": "Czekanie na frazę...",
     "judgeChoosingPhrase": "{nickname} wybiera frazę na tę rundę",
     "useThisPhrase": "Użyj tej frazy",
