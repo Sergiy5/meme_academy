@@ -59,7 +59,7 @@ export const JoinRoom = () => {
       {/* Content */}
       <div className="screen-content items-center justify-center gap-8 px-4">
         <div className="animate-fade-in text-center">
-          <h1 className="mb-2 text-3xl font-bold">{t('title')}</h1>
+          <h1 className="text-game-text mb-2 text-3xl font-bold">{t('title')}</h1>
           <p className="text-game-text-dim">{t('subtitle')}</p>
         </div>
 
