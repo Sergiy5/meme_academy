@@ -39,7 +39,10 @@ export default function CreateRoomPage() {
     <div className="screen">
       {/* Header */}
       <div className="screen-header">
-        <Link href="/" className="text-game-text-dim hover:text-game-neon transition-colors">
+        <Link
+          href="/"
+          className="text-game-text-dim hover:text-game-neon rounded-md p-2 transition-colors"
+        >
           &larr; {tCommon('back')}
         </Link>
       </div>
@@ -47,7 +50,7 @@ export default function CreateRoomPage() {
       {/* Content */}
       <div className="screen-content items-center justify-center gap-8 px-4">
         <div className="animate-fade-in text-center">
-          <h1 className="mb-2 text-3xl font-bold">{t('title')}</h1>
+          <h1 className="text-game-text mb-2 text-3xl font-bold">{t('title')}</h1>
           <p className="text-game-text-dim">{t('subtitle')}</p>
         </div>
 
