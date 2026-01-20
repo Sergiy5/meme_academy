@@ -3,8 +3,11 @@
 import { useGameSocket, useGameStore, selectCurrentRound, selectPlayers, selectIsWinner } from '@/lib/game';
 import { RoomHeader, PlayerAvatar } from '../common';
 import { PhraseCard } from '../cards';
+import { useTranslations } from 'next-intl';
 
 export default function ResultScreen() {
+  const t = useTranslations('result');
+  const tCommon = useTranslations('common');
   const { nextRound } = useGameSocket();
   const { playerId } = useGameStore();
   const round = useGameStore(selectCurrentRound);
@@ -18,7 +21,6 @@ export default function ResultScreen() {
     s => s.memeId === round.winningMemeId
   );
 
-  // Sort players by score for leaderboard
   const sortedPlayers = [...players].sort((a, b) => b.score - a.score);
 
   return (
@@ -30,16 +32,16 @@ export default function ResultScreen() {
         <div className="text-center animate-scale-in pt-2">
           {isWinner ? (
             <>
-              <h1 className="text-2xl sm:text-3xl font-bold neon-text mb-2">You Won!</h1>
-              <p className="text-game-text-dim text-sm">You'll be the Judge next round</p>
+              <h1 className="text-2xl sm:text-3xl font-bold neon-text mb-2">{t('youWon')}</h1>
+              <p className="text-game-text-dim text-sm">{t('youWillBeJudge')}</p>
             </>
           ) : (
             <>
               <h1 className="text-xl sm:text-2xl font-bold mb-2">
                 <span className="neon-text">{winner?.nickname}</span>
-                <span className="text-white"> wins!</span>
+                <span className="text-white"> {t('playerWins', { nickname: '' }).replace('{nickname}', '').trim()}</span>
               </h1>
-              <p className="text-game-text-dim text-sm">They'll be the Judge next round</p>
+              <p className="text-game-text-dim text-sm">{t('theyWillBeJudge')}</p>
             </>
           )}
         </div>
@@ -50,11 +52,11 @@ export default function ResultScreen() {
         {/* Winning Meme */}
         {winningSubmission && (
           <div className="game-card p-3 sm:p-4 animate-slide-up">
-            <p className="text-xs text-game-text-dim mb-2 text-center">Winning Meme</p>
+            <p className="text-xs text-game-text-dim mb-2 text-center">{t('winningMeme')}</p>
             <div className="aspect-square max-w-[200px] sm:max-w-xs mx-auto rounded-lg overflow-hidden neon-border">
               <img
                 src={winningSubmission.meme.imageUrl}
-                alt="Winning meme"
+                alt={t('winningMemeAlt')}
                 className="w-full h-full object-cover"
               />
             </div>
@@ -69,7 +71,7 @@ export default function ResultScreen() {
 
         {/* Scoreboard */}
         <div className="game-card p-4 animate-slide-up" style={{ animationDelay: '0.1s' }}>
-          <h2 className="text-sm font-semibold text-game-text-dim mb-3">Scoreboard</h2>
+          <h2 className="text-sm font-semibold text-game-text-dim mb-3">{t('scoreboard')}</h2>
           <div className="space-y-2">
             {sortedPlayers.map((player, index) => (
               <div
@@ -92,7 +94,7 @@ export default function ResultScreen() {
                   <span className={player.id === playerId ? 'font-medium' : ''}>
                     {player.nickname}
                     {player.id === playerId && (
-                      <span className="text-game-text-dim text-xs ml-1">(You)</span>
+                      <span className="text-game-text-dim text-xs ml-1">({tCommon('you')})</span>
                     )}
                   </span>
                 </div>
@@ -105,14 +107,13 @@ export default function ResultScreen() {
         </div>
       </div>
 
-      {/* Footer - Next Round Button (only for winner/next judge) */}
       {isWinner && (
         <div className="screen-footer">
           <button
             onClick={nextRound}
             className="game-btn game-btn-primary w-full"
           >
-            Next Round
+            {t('nextRound')}
           </button>
         </div>
       )}

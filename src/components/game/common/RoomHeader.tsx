@@ -1,12 +1,14 @@
 'use client';
 
 import { useGameStore, selectPlayers, selectMyPlayer } from '@/lib/game';
+import { useTranslations } from 'next-intl';
 
 interface RoomHeaderProps {
   compact?: boolean;
 }
 
 export default function RoomHeader({ compact = false }: RoomHeaderProps) {
+  const t = useTranslations('common');
   const { gameState, connectionStatus } = useGameStore();
   const players = useGameStore(selectPlayers);
   const myPlayer = useGameStore(selectMyPlayer);
@@ -30,7 +32,7 @@ export default function RoomHeader({ compact = false }: RoomHeaderProps) {
         {/* Room Code */}
         {!compact && (
           <div>
-            <span className="text-game-text-dim text-xs">Room</span>
+            <span className="text-game-text-dim text-xs">{t('room')}</span>
             <p className="room-code text-base sm:text-lg">{gameState.roomCode}</p>
           </div>
         )}
@@ -55,13 +57,12 @@ export default function RoomHeader({ compact = false }: RoomHeaderProps) {
           </div>
         )}
 
-          {/* //text-right */}
         {/* Player count */}
         <div className="flex items-center justify-center gap-2">
-          <span className="text-game-text-dim hidden text-xs sm:block">Players</span>
+          <span className="text-game-text-dim hidden text-xs sm:block">{t('players')}</span>
           <p className="text-xs font-semibold sm:text-sm">
             <span className="neon-text">{players.filter((p) => p.isConnected).length}</span>
-            <span className="text-game-text-dim">/{players.length}</span>
+            {/* <span className="text-game-text-dim">/{players.length}</span> */}
           </p>
         </div>
       </div>

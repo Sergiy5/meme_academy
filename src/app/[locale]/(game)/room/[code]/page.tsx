@@ -2,15 +2,18 @@
 export const dynamic = 'force-dynamic';
 
 import { useEffect } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import { useParams } from 'next/navigation';
+import { useRouter } from '@/i18n/navigation';
 import { useGameSocket, useGameStore, selectCurrentPhase } from '@/lib/game';
 import LobbyScreen from '@/components/game/screens/LobbyScreen';
 import PhraseSelectionScreen from '@/components/game/screens/PhraseSelectionScreen';
 import PickingScreen from '@/components/game/screens/PickingScreen';
 import JudgingScreen from '@/components/game/screens/JudgingScreen';
 import ResultScreen from '@/components/game/screens/ResultScreen';
+import { useTranslations } from 'next-intl';
 
 export default function RoomPage() {
+  const t = useTranslations('common');
   const params = useParams();
   const router = useRouter();
   const roomCode = params.code as string;
@@ -42,7 +45,7 @@ export default function RoomPage() {
         <div className="screen-content items-center justify-center">
           <div className="spinner" />
           <p className="text-game-text-dim mt-4">
-            {connectionStatus === 'connecting' ? 'Connecting...' : 'Loading game...'}
+            {connectionStatus === 'connecting' ? t('connecting') : t('loading')}
           </p>
           {error && <p className="text-game-error mt-2">{error}</p>}
         </div>

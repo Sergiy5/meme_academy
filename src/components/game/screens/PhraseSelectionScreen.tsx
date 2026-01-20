@@ -8,8 +8,10 @@ import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import { useGameSocket, useGameStore, selectIsJudge, selectJudge, selectCurrentRound, selectPhraseOptions } from '@/lib/game';
 import { RoomHeader, PlayerAvatar } from '../common';
+import { useTranslations } from 'next-intl';
 
 export default function PhraseSelectionScreen() {
+  const t = useTranslations('phraseSelection');
   const { selectPhrase } = useGameSocket();
   const isJudge = useGameStore(selectIsJudge);
   const judge = useGameStore(selectJudge);
@@ -35,7 +37,6 @@ export default function PhraseSelectionScreen() {
 
   const handleSlideChange = (swiper: SwiperType) => {
     const newIndex = swiper.realIndex % phraseOptions.length;
-    // Only clear selection if we actually moved to a different slide
     if (newIndex !== activeIndex) {
       setSelectedPhraseId(null);
     }
@@ -46,8 +47,6 @@ export default function PhraseSelectionScreen() {
     swiperInstance?.slideToLoop(index);
   };
 
-  // Duplicate slides to enable proper loop in both directions
-  // Swiper needs at least slidesPerView * 2 slides for loop to work
   const duplicatedPhrases = [...phraseOptions, ...phraseOptions];
 
   return (
@@ -57,7 +56,7 @@ export default function PhraseSelectionScreen() {
       <div className="screen-content gap-6 px-4">
         {/* Round Info */}
         <div className="text-center">
-          <span className="text-game-text-dim text-sm">Round {round.roundNumber}</span>
+          <span className="text-game-text-dim text-sm">{t('round', { number: round.roundNumber })}</span>
         </div>
 
         {/* Judge indicator */}
@@ -67,21 +66,19 @@ export default function PhraseSelectionScreen() {
               <PlayerAvatar player={judge} size="sm" />
               <span className="text-game-text-dim">
                 {isJudge
-                  ? 'Choose a phrase for this round!'
-                  : `${judge.nickname} is choosing a phrase...`}
+                  ? t('choosePhrase')
+                  : t('judgeChoosing', { nickname: judge.nickname })}
               </span>
             </>
           )}
         </div>
 
         {isJudge ? (
-          // Judge View - Swiper Carousel
           <div className="flex flex-1 flex-col items-center justify-center gap-6">
             <h3 className="text-game-text-dim text-center text-sm">
-              Swipe or tap to browse phrases
+              {t('swipeHint')}
             </h3>
 
-            {/* Swiper Carousel */}
             <div className="mx-auto w-full max-w-md overflow-hidden rounded-xl border border-game-border bg-game-card/30 py-8 px-4">
               <Swiper
                 modules={[EffectCoverflow]}
@@ -119,19 +116,12 @@ export default function PhraseSelectionScreen() {
                         <p className="text-base leading-relaxed font-semibold text-white">
                           {phrase.text}
                         </p>
-                        {/* {isSelected && (
-                          <div className="text-game-neon mt-2 flex items-center justify-center gap-2 text-sm">
-                            <span>Selected</span>
-                            <span className="text-lg">✓</span>
-                          </div>
-                        )} */}
                       </div>
                     </SwiperSlide>
                   );
                 })}
               </Swiper>
 
-              {/* Custom Indicators */}
               <div className="mt-4 flex justify-center gap-2">
                 {phraseOptions.map((phrase, index) => (
                   <button
@@ -144,27 +134,25 @@ export default function PhraseSelectionScreen() {
                           ? 'bg-game-neon/50'
                           : 'bg-game-border'
                     }`}
-                    aria-label={`Go to phrase ${index + 1}`}
+                    aria-label={t('goToPhrase', { number: index + 1 })}
                   />
                 ))}
               </div>
             </div>
           </div>
         ) : (
-          // Non-judge View - Waiting
           <div className="flex flex-1 flex-col items-center justify-center gap-4">
             <div className="game-card p-8 text-center">
               <div className="spinner mx-auto mb-4" />
-              <h2 className="mb-2 text-xl font-semibold">Waiting for phrase...</h2>
+              <h2 className="mb-2 text-xl font-semibold">{t('waitingForPhrase')}</h2>
               <p className="text-game-text-dim">
-                {judge?.nickname} is choosing a phrase for this round
+                {t('judgeChoosingPhrase', { nickname: judge?.nickname })}
               </p>
             </div>
           </div>
         )}
       </div>
 
-      {/* Footer - Confirm Button (only for judge) */}
       {isJudge && (
         <div className="screen-footer">
           <button
@@ -172,7 +160,7 @@ export default function PhraseSelectionScreen() {
             disabled={!selectedPhraseId}
             className="game-btn game-btn-primary w-full"
           >
-            {selectedPhraseId ? 'Use This Phrase' : 'Select a phrase'}
+            {selectedPhraseId ? t('useThisPhrase') : t('selectPhrase')}
           </button>
         </div>
       )}
