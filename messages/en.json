@@ -60,6 +60,8 @@
     "judgeChoosing": "{nickname} is choosing a phrase...",
     "swipeHint": "Swipe or tap to browse phrases",
     "goToPhrase": "Go to phrase {number}",
+    "previousPhrase": "Previous phrase",
+    "nextPhrase": "Next phrase",
     "waitingForPhrase": "Waiting for phrase...",
     "judgeChoosingPhrase": "{nickname} is choosing a phrase for this round",
     "useThisPhrase": "Use This Phrase",

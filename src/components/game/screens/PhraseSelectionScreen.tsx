@@ -79,7 +79,9 @@ export default function PhraseSelectionScreen() {
               {t('swipeHint')}
             </h3>
 
-            <div className="mx-auto w-full max-w-md overflow-hidden rounded-xl border border-game-border bg-game-card/30 py-8 px-4">
+            <div className="relative mx-auto w-full max-w-md overflow-hidden rounded-xl border border-game-border bg-game-card/30 py-8 px-4">
+              
+
               <Swiper
                 modules={[EffectCoverflow]}
                 effect="coverflow"
@@ -139,6 +141,28 @@ export default function PhraseSelectionScreen() {
                 ))}
               </div>
             </div>
+              <div className=' absolute top-2/3 w-1/2'>
+              {/* Desktop navigation buttons */}
+              <button
+                onClick={() => swiperInstance?.slidePrev()}
+                className="absolute left-2 top-1/2 z-10 hidden -translate-y-1/2 rounded-full bg-game-card/80 p-2 text-game-text-dim transition-colors hover:bg-game-card hover:text-white md:block"
+                aria-label={t('previousPhrase')}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              <button
+                onClick={() => swiperInstance?.slideNext()}
+                className="absolute right-2 top-1/2 z-10 hidden -translate-y-1/2 rounded-full bg-game-card/80 p-2 text-game-text-dim transition-colors hover:bg-game-card hover:text-white md:block"
+                aria-label={t('nextPhrase')}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+
+              </div>
           </div>
         ) : (
           <div className="flex flex-1 flex-col items-center justify-center gap-4">

@@ -60,6 +60,8 @@
     "judgeChoosing": "{nickname} обирає фразу...",
     "swipeHint": "Свайпніть або натисніть для перегляду фраз",
     "goToPhrase": "Перейти до фрази {number}",
+    "previousPhrase": "Попередня фраза",
+    "nextPhrase": "Наступна фраза",
     "waitingForPhrase": "Чекаємо на фразу...",
     "judgeChoosingPhrase": "{nickname} обирає фразу для цього раунду",
     "useThisPhrase": "Обрати цю фразу",
