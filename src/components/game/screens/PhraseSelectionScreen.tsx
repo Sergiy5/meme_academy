@@ -6,7 +6,14 @@ import { EffectCoverflow } from 'swiper/modules';
 import type { Swiper as SwiperType } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
-import { useGameSocket, useGameStore, selectIsJudge, selectJudge, selectCurrentRound, selectPhraseOptions } from '@/lib/game';
+import {
+  useGameSocket,
+  useGameStore,
+  selectIsJudge,
+  selectJudge,
+  selectCurrentRound,
+  selectPhraseOptions,
+} from '@/lib/game';
 import { RoomHeader, PlayerAvatar } from '../common';
 import { useTranslations } from 'next-intl';
 
@@ -56,7 +63,9 @@ export default function PhraseSelectionScreen() {
       <div className="screen-content gap-6 px-4">
         {/* Round Info */}
         <div className="text-center">
-          <span className="text-game-text-dim text-sm">{t('round', { number: round.roundNumber })}</span>
+          <span className="text-game-text-dim text-sm">
+            {t('round', { number: round.roundNumber })}
+          </span>
         </div>
 
         {/* Judge indicator */}
@@ -65,9 +74,7 @@ export default function PhraseSelectionScreen() {
             <>
               <PlayerAvatar player={judge} size="sm" />
               <span className="text-game-text-dim">
-                {isJudge
-                  ? t('choosePhrase')
-                  : t('judgeChoosing', { nickname: judge.nickname })}
+                {isJudge ? t('choosePhrase') : t('judgeChoosing', { nickname: judge.nickname })}
               </span>
             </>
           )}
@@ -75,13 +82,9 @@ export default function PhraseSelectionScreen() {
 
         {isJudge ? (
           <div className="flex flex-1 flex-col items-center justify-center gap-6">
-            <h3 className="text-game-text-dim text-center text-sm">
-              {t('swipeHint')}
-            </h3>
+            <h3 className="text-game-text-dim text-center text-sm">{t('swipeHint')}</h3>
 
-            <div className="relative mx-auto w-full max-w-md overflow-hidden rounded-xl border border-game-border bg-game-card/30 py-8 px-4">
-              
-
+            <div className="border-game-border bg-game-card/30 relative mx-auto w-full lg:max-w-xl overflow-hidden rounded-xl border px-4 py-8">
               <Swiper
                 modules={[EffectCoverflow]}
                 effect="coverflow"
@@ -141,28 +144,49 @@ export default function PhraseSelectionScreen() {
                 ))}
               </div>
             </div>
-              <div className=' absolute top-2/3 w-1/2'>
+            <div className="absolute top-2/3 w-1/2">
               {/* Desktop navigation buttons */}
               <button
                 onClick={() => swiperInstance?.slidePrev()}
-                className="absolute left-2 top-1/2 z-10 hidden -translate-y-1/2 rounded-full bg-game-card/80 p-2 text-game-text-dim transition-colors hover:bg-game-card hover:text-white md:block"
+                className="bg-game-card/80 text-game-text-dim hover:bg-game-card absolute top-1/2 left-2 z-10 hidden -translate-y-1/2 rounded-full p-2 transition-colors hover:text-white md:block"
                 aria-label={t('previousPhrase')}
               >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 19l-7-7 7-7"
+                  />
                 </svg>
               </button>
               <button
                 onClick={() => swiperInstance?.slideNext()}
-                className="absolute right-2 top-1/2 z-10 hidden -translate-y-1/2 rounded-full bg-game-card/80 p-2 text-game-text-dim transition-colors hover:bg-game-card hover:text-white md:block"
+                className="bg-game-card/80 text-game-text-dim hover:bg-game-card absolute top-1/2 right-2 z-10 hidden -translate-y-1/2 rounded-full p-2 transition-colors hover:text-white md:block"
                 aria-label={t('nextPhrase')}
               >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
                 </svg>
               </button>
-
-              </div>
+            </div>
           </div>
         ) : (
           <div className="flex flex-1 flex-col items-center justify-center gap-4">
@@ -170,7 +194,7 @@ export default function PhraseSelectionScreen() {
               <div className="spinner mx-auto mb-4" />
               <h2 className="mb-2 text-xl font-semibold">{t('waitingForPhrase')}</h2>
               <p className="text-game-text-dim">
-                {t('judgeChoosingPhrase', { nickname: judge?.nickname ?? "" })}
+                {t('judgeChoosingPhrase', { nickname: judge?.nickname ?? '' })}
               </p>
             </div>
           </div>
