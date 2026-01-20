@@ -77,7 +77,8 @@ export default function JudgingScreen() {
             <div className="flex flex-col items-center justify-center gap-4 py-8">
               <div className="game-card p-8 text-center">
                 <div className="spinner mx-auto mb-4" />
-                <h2 className="text-xl font-semibold mb-2">{t('judgeDeciding')}</h2>
+                  <h2 className="text-xl font-semibold mb-2">{t('judgeDeciding')}</h2>
+                  {/* Nickname */}
                 <p className="text-game-text-dim mb-4">
                   {t('judgePickingWinner', { nickname: judge?.nickname ?? '' })}
                 </p>
