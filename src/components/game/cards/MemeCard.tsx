@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { MemeCard as MemeCardType } from '@/lib/game/types';
+import { cn } from '@/utils/cn';
 
 // Fallback placeholder images (picsum photos that are reliable)
 const FALLBACK_IMAGES = [
@@ -23,9 +24,10 @@ interface MemeCardProps {
   selected?: boolean;
   onClick?: () => void;
   disabled?: boolean;
+  className?: string;
 }
 
-export default function MemeCard({ meme, selected = false, onClick, disabled = false }: MemeCardProps) {
+export default function MemeCard({ meme, selected = false, onClick, disabled = false, className }: MemeCardProps) {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
   const [currentSrc, setCurrentSrc] = useState(meme.imageUrl);
@@ -42,7 +44,7 @@ export default function MemeCard({ meme, selected = false, onClick, disabled = f
   const handleError = () => {
     if (retryCount < 1) {
       // Try fallback image
-      setRetryCount(prev => prev + 1);
+      setRetryCount((prev) => prev + 1);
       setCurrentSrc(getFallbackImage(meme.id));
       setImageLoaded(false);
     } else {
@@ -52,7 +54,9 @@ export default function MemeCard({ meme, selected = false, onClick, disabled = f
 
   return (
     <div
-      className={`meme-card ${selected ? 'meme-card-selected' : ''} ${disabled ? 'pointer-events-none opacity-50' : ''}`}
+      className={cn(`meme-card ${selected ? 'meme-card-selected' : ''} ${disabled ? 'pointer-events-none opacity-50' : ''}`,
+        className,
+      )}
       onClick={disabled ? undefined : onClick}
       role="button"
       tabIndex={disabled ? -1 : 0}
@@ -63,14 +67,14 @@ export default function MemeCard({ meme, selected = false, onClick, disabled = f
       }}
     >
       {!imageLoaded && !imageError && (
-        <div className="absolute inset-0 flex items-center justify-center bg-game-card">
+        <div className="bg-game-card absolute inset-0 flex items-center justify-center">
           <div className="spinner" style={{ width: '1.5rem', height: '1.5rem' }} />
         </div>
       )}
 
       {imageError ? (
-        <div className="absolute inset-0 flex flex-col items-center justify-center bg-game-card text-game-text-dim">
-          <span className="text-2xl mb-1">🖼️</span>
+        <div className="bg-game-card text-game-text-dim absolute inset-0 flex flex-col items-center justify-center">
+          <span className="mb-1 text-2xl">🖼️</span>
           <span className="text-xs">Image unavailable</span>
         </div>
       ) : (

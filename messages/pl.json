@@ -100,7 +100,8 @@
     "winningMeme": "Zwycięski mem",
     "winningMemeAlt": "Zwycięski mem",
     "scoreboard": "Tabela wyników",
-    "nextRound": "Następna runda"
+    "nextRound": "Następna runda",
+    "finishGame": "Zakończ grę"
   },
   "memeCard": {
     "imageUnavailable": "Obraz niedostępny",

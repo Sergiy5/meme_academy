@@ -26,7 +26,7 @@ export function LanguageSwitcher() {
         disabled={isPending}
         className="flex items-center gap-2 px-3 py-2 rounded-lg bg-game-card border border-game-border hover:border-game-neon/50 transition-colors text-sm"
       >
-        <span className="text-lg">{getFlag(locale)}</span>
+        {/* <span className="text-lg">{getFlag(locale)}</span> */}
         <span className="text-game-text-dim">{locale.toUpperCase()}</span>
         <svg
           className={`w-4 h-4 text-game-text-dim transition-transform ${isOpen ? 'rotate-180' : ''}`}
@@ -48,7 +48,7 @@ export function LanguageSwitcher() {
                 loc === locale ? 'text-game-neon' : 'text-white'
               }`}
             >
-              <span className="text-lg">{getFlag(loc)}</span>
+              {/* <span className="text-lg">{getFlag(loc)}</span> */}
               <span>{localeNames[loc]}</span>
             </button>
           ))}
@@ -58,11 +58,11 @@ export function LanguageSwitcher() {
   );
 }
 
-function getFlag(locale: Locale): string {
-  const flags: Record<Locale, string> = {
-    en: '🇬🇧',
-    uk: '🇺🇦',
-    pl: '🇵🇱',
-  };
-  return flags[locale];
-}
+// function getFlag(locale: Locale): string {
+//   const flags: Record<Locale, string> = {
+//     en: '🇬🇧',
+//     uk: '🇺🇦',
+//     pl: '🇵🇱',
+//   };
+//   return flags[locale];
+// }

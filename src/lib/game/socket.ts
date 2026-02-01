@@ -46,33 +46,42 @@ export function useGameSocket() {
     store.setConnectionStatus('connecting');
     s.connect();
   }, [store]);
-
+  // Need to implement finish game ===============================================================================
   const disconnect = useCallback(() => {
     const s = getSocket();
     s.disconnect();
     store.setConnectionStatus('disconnected');
   }, [store]);
 
-  const createRoom = useCallback((nickname: string) => {
-    const s = getSocket();
-    const locale = getCurrentLocale();
-    store.setLoading(true);
-    s.emit('create_room', { nickname, locale });
-  }, [store]);
+  const createRoom = useCallback(
+    (nickname: string) => {
+      const s = getSocket();
+      const locale = getCurrentLocale();
+      store.setLoading(true);
+      s.emit('create_room', { nickname, locale });
+    },
+    [store],
+  );
 
-  const joinRoom = useCallback((roomCode: string, nickname: string) => {
-    const s = getSocket();
-    const locale = getCurrentLocale();
-    store.setLoading(true);
-    s.emit('join_room', { roomCode: roomCode.toUpperCase(), nickname, locale });
-  }, [store]);
+  const joinRoom = useCallback(
+    (roomCode: string, nickname: string) => {
+      const s = getSocket();
+      const locale = getCurrentLocale();
+      store.setLoading(true);
+      s.emit('join_room', { roomCode: roomCode.toUpperCase(), nickname, locale });
+    },
+    [store],
+  );
 
-  const reconnectToRoom = useCallback((playerId: string, roomCode: string) => {
-    const s = getSocket();
-    const locale = getCurrentLocale();
-    store.setLoading(true);
-    s.emit('reconnect_room', { playerId, roomCode, locale });
-  }, [store]);
+  const reconnectToRoom = useCallback(
+    (playerId: string, roomCode: string) => {
+      const s = getSocket();
+      const locale = getCurrentLocale();
+      store.setLoading(true);
+      s.emit('reconnect_room', { playerId, roomCode, locale });
+    },
+    [store],
+  );
 
   const startGame = useCallback(() => {
     const s = getSocket();
@@ -84,11 +93,14 @@ export function useGameSocket() {
     s.emit('select_phrase', { phraseId });
   }, []);
 
-  const submitMeme = useCallback((memeId: string) => {
-    const s = getSocket();
-    s.emit('submit_meme', { memeId });
-    store.setSubmitted(true);
-  }, [store]);
+  const submitMeme = useCallback(
+    (memeId: string) => {
+      const s = getSocket();
+      s.emit('submit_meme', { memeId });
+      store.setSubmitted(true);
+    },
+    [store],
+  );
 
   const selectWinner = useCallback((oderId: string) => {
     const s = getSocket();
@@ -116,7 +128,6 @@ export function useGameSocket() {
       // Reset error ===================================================================================
       // store.setError(null);
 
-
       // Try to reconnect to existing room
       const savedPlayerId = sessionStorage.getItem('playerId');
       const savedRoomCode = sessionStorage.getItem('roomCode');
@@ -136,7 +147,6 @@ export function useGameSocket() {
       store.setError('Failed to connect to server');
       // Reset error =======================================================
       setTimeout(() => store.setError(null), 5000);
-
     };
 
     const handleRoomCreated = ({ roomCode, playerId }: { roomCode: string; playerId: string }) => {

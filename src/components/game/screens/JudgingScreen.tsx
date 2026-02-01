@@ -37,7 +37,9 @@ export default function JudgingScreen() {
       <div className="screen-content gap-4 px-4">
         {/* Round Info */}
         <div className="text-center">
-          <span className="text-game-text-dim text-sm">{t('round', { number: round.roundNumber })}</span>
+          <span className="text-game-text-dim text-sm">
+            {t('round', { number: round.roundNumber })}
+          </span>
         </div>
 
         {/* Phrase Card */}
@@ -59,14 +61,14 @@ export default function JudgingScreen() {
         <div className="flex-1">
           {isJudge ? (
             <>
-              <h3 className="text-center text-sm text-game-text-dim mb-4">
-                {t('tapToSelect')}
-              </h3>
-              <div className="meme-grid">
+              <h3 className="text-game-text-dim mb-4 text-center text-sm">{t('tapToSelect')}</h3>
+              <div className="flex w-full flex-wrap justify-center gap-4">
+                {/* meme-grid */}
                 {submissions.map((submission) => (
                   <MemeCard
                     key={submission.oderId}
                     meme={submission.meme}
+                    className="max-w-[45%] lg:max-w-[20%]"
                     selected={selectedOrderId === submission.oderId}
                     onClick={() => handleSelectSubmission(submission.oderId)}
                   />
@@ -77,20 +79,23 @@ export default function JudgingScreen() {
             <div className="flex flex-col items-center justify-center gap-4 py-8">
               <div className="game-card p-8 text-center">
                 <div className="spinner mx-auto mb-4" />
-                  <h2 className="text-xl font-semibold mb-2">{t('judgeDeciding')}</h2>
-                  {/* Nickname */}
+                <h2 className="mb-2 text-xl font-semibold text-white">{t('judgeDeciding')}</h2>
+                {/* Nickname */}
                 <p className="text-game-text-dim mb-4">
                   {t('judgePickingWinner', { nickname: judge?.nickname ?? '' })}
                 </p>
 
-                <p className="text-xs text-game-text-dim mb-4">{t('submissions')}</p>
-                <div className="grid grid-cols-3 gap-2 max-w-xs mx-auto">
+                <p className="text-game-text-dim mb-4 text-xs">{t('submissions')}</p>
+                <div className="mx-auto flex w-full flex-wrap justify-center gap-4">
                   {submissions.map((submission) => (
-                    <div key={submission.oderId} className="aspect-square rounded overflow-hidden">
+                    <div
+                      key={submission.oderId}
+                      className="aspect-square max-w-[45%] overflow-hidden rounded lg:max-w-[20%]"
+                    >
                       <img
                         src={submission.meme.imageUrl}
                         alt={t('submittedMemeAlt')}
-                        className="w-full h-full object-cover"
+                        className="h-full w-full object-cover"
                       />
                     </div>
                   ))}
@@ -106,7 +111,7 @@ export default function JudgingScreen() {
           <button
             onClick={handlePickWinner}
             disabled={!selectedOrderId}
-            className="game-btn game-btn-primary w-full animate-glow"
+            className="game-btn game-btn-primary animate-glow w-full"
           >
             {selectedOrderId ? t('pickThisWinner') : t('selectMeme')}
           </button>

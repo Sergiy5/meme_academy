@@ -100,7 +100,8 @@
     "winningMeme": "Переможний мем",
     "winningMemeAlt": "Переможний мем",
     "scoreboard": "Таблиця результатів",
-    "nextRound": "Наступний раунд"
+    "nextRound": "Наступний раунд",
+    "finishGame": "Завершити гру"
   },
   "memeCard": {
     "imageUnavailable": "Зображення недоступне",
