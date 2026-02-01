@@ -113,6 +113,9 @@ export function useGameSocket() {
     const handleConnect = () => {
       isConnecting.current = false;
       store.setConnectionStatus('connected');
+      // Reset error ===================================================================================
+      // store.setError(null);
+
 
       // Try to reconnect to existing room
       const savedPlayerId = sessionStorage.getItem('playerId');
@@ -131,6 +134,9 @@ export function useGameSocket() {
       isConnecting.current = false;
       store.setConnectionStatus('disconnected');
       store.setError('Failed to connect to server');
+      // Reset error =======================================================
+      setTimeout(() => store.setError(null), 5000);
+
     };
 
     const handleRoomCreated = ({ roomCode, playerId }: { roomCode: string; playerId: string }) => {
