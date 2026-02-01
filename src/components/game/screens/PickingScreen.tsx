@@ -68,7 +68,7 @@ export default function PickingScreen() {
           <div className="flex-1 flex flex-col items-center justify-center gap-4">
             <div className="game-card p-8 text-center">
               <div className="spinner mx-auto mb-4" />
-              <h2 className="text-xl font-semibold mb-2">{t('waitingForPlayers')}</h2>
+              <h2 className="text-xl font-semibold mb-2 text-white">{t('waitingForPlayers')}</h2>
               <p className="text-game-text-dim">
                 {t('playersPickingMemes')}
               </p>

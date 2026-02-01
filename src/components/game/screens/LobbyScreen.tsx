@@ -90,7 +90,7 @@ export default function LobbyScreen() {
               <div
                 key={player.id}
                 className={`flex items-center justify-between p-3 rounded-lg ${
-                  player.id === playerId ? 'bg-game-neon/10 border border-game-neon/30' : 'bg-game-bg-secondary'
+                  player.id === playerId ? 'bg-game-neon/10 border border-game-neon/30' : 'bg-white/5'
                 }`}
               >
                 <PlayerAvatar player={player} showName />

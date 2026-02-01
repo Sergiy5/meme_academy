@@ -100,7 +100,8 @@
     "winningMeme": "Winning Meme",
     "winningMemeAlt": "Winning meme",
     "scoreboard": "Scoreboard",
-    "nextRound": "Next Round"
+    "nextRound": "Next Round",
+    "finishGame": "Finish Game"
   },
   "memeCard": {
     "imageUnavailable": "Image unavailable",
